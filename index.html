@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CRUD Operation</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <h1>Bus Booking</h1>
+    <div>
+      <form onsubmit="handleFormSubmit(event)">
+        <div>
+          <label for="username">Name:</label>
+          <input id="username" type="text" placeholder="Enter name" />
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input id="email" type="email" placeholder="Enter email id" />
+        </div>
+        <div>
+          <label for="phone">Phone:</label>
+          <input id="phone" type="tel" placeholder="Enter Phone no." />
+        </div>
+        <div>
+          <label for="bus-number">Bus Number:</label>
+          <select id="bus-number">
+            <option value="Bus 1">Bus 1</option>
+            <option value="Bus 2">Bus 2</option>
+            <option value="Bus 3">Bus 3</option>
+          </select>
+        </div>
+        <input id="submit-btn" type="submit" value="Submit" />
+      </form>
+      <div>
+        <label for="filter">Filter:</label>
+        <select id="filter">
+          <option value="Bus 1">Bus 1</option>
+          <option value="Bus 2">Bus 2</option>
+          <option value="Bus 3">Bus 3</option>
+        </select>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
