@@ -11,5 +11,5 @@ function handleFormSubmit(event) {
     busNumber
   };
 
-  console.log("Successfully commited");
+  console.log(userDetails);
 }
