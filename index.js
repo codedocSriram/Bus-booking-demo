@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", initialize);
 let edit = false;
 let editId = null;
 const url =
-  "https://crudcrud.com/api/0deff736078340f59f48d319ed4c3b06/bookingList"; //CRUD-CRUD Url
+  "https://crudcrud.com/api/74b989c5110348dfa4c4a1cf45be8441/bookingList"; //CRUD-CRUD Url
 
 async function initialize() {
   const bookingList = await getBookings();
@@ -66,7 +66,7 @@ async function handleFormSubmit(event) {
     busNumber
   };
   if (edit) {
-    const abc = await editBooking(editId, userDetails);
+    await editBooking(editId, userDetails);
     const li = document.getElementById(editId);
     li.firstChild.textContent = `${userDetails.username} - ${userDetails.email} - ${userDetails.phone} - ${userDetails.busNumber}`;
     document.querySelector("#submit-btn").value = "Submit";
@@ -103,7 +103,7 @@ function deleteData(li) {
   li.remove();
 }
 
-async function editData(bookings) {
+function editData(bookings) {
   edit = true;
   editId = bookings._id;
   console.log(editId);
@@ -112,4 +112,25 @@ async function editData(bookings) {
   document.querySelector("#phone").value = bookings.phone;
   document.querySelector("#bus-number").value = bookings.busNumber;
   document.querySelector("#submit-btn").value = "Update Booking";
+}
+
+async function filterData() {
+  const filter = document.querySelector("#filter");
+  const ul = document.querySelector("ul");
+  const bookings = await getBookings();
+  ul.innerHTML = "";
+  if (filter.value === "All") {
+    for (let i = 0; i < bookings.length; i++) {
+      displayBookings(bookings[i]);
+    }
+  } else {
+    const filteredBookings = bookings.filter(data => {
+      if (data.busNumber === filter.value) {
+        return data;
+      }
+    });
+    for (let i = 0; i < filteredBookings.length; i++) {
+      displayBookings(filteredBookings[i]);
+    }
+  }
 }

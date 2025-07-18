@@ -10,15 +10,30 @@
       <form onsubmit="handleFormSubmit(event)">
         <div>
           <label for="username">Name:</label>
-          <input id="username" type="text" placeholder="Enter name" />
+          <input
+            id="username"
+            type="text"
+            placeholder="Enter name"
+            autocomplete="name"
+          />
         </div>
         <div>
           <label for="email">Email:</label>
-          <input id="email" type="email" placeholder="Enter email id" />
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter email id"
+            autocomplete="email"
+          />
         </div>
         <div>
           <label for="phone">Phone:</label>
-          <input id="phone" type="tel" placeholder="Enter Phone no." />
+          <input
+            id="phone"
+            type="tel"
+            placeholder="Enter Phone no."
+            autocomplete="tel"
+          />
         </div>
         <div>
           <label for="bus-number">Bus Number:</label>
@@ -32,13 +47,15 @@
       </form>
       <div>
         <label for="filter">Filter:</label>
-        <select id="filter">
+        <select id="filter" onchange="filterData()">
+          <option value="All">All</option>
           <option value="Bus 1">Bus 1</option>
           <option value="Bus 2">Bus 2</option>
           <option value="Bus 3">Bus 3</option>
         </select>
       </div>
     </div>
+    <ul></ul>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js"></script>
     <script src="./index.js"></script>
   </body>
