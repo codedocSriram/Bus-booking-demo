@@ -77,7 +77,6 @@ async function handleFormSubmit(event) {
     document.querySelector("#username").value = "";
     document.querySelector("#email").value = "";
     document.querySelector("#phone").value = "";
-    document.querySelector("#bus-number").value = "";
   }
 }
 

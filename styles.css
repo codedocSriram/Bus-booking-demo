@@ -39,9 +39,6 @@ li {
   border: none;
   height: 25px;
 }
-.update-btn {
-  background-color: greenyellow;
-}
 .glass-effect {
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.301));
   background-color: rgb(152 151 151 / 25%);
