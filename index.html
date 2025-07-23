@@ -5,10 +5,13 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <h1>Bus Booking</h1>
-    <div>
+    <div class="title-div glass-effect">
+      <h1>Travel with GreenBus 🚌💨</h1>
+    </div>
+    <div class="parent-div glass-effect">
+      <h2>Book your bus</h2>
       <form onsubmit="handleFormSubmit(event)">
-        <div>
+        <div class="form-child-div">
           <label for="username">Name:</label>
           <input
             id="username"
@@ -17,7 +20,7 @@
             autocomplete="name"
           />
         </div>
-        <div>
+        <div class="form-child-div">
           <label for="email">Email:</label>
           <input
             id="email"
@@ -26,7 +29,7 @@
             autocomplete="email"
           />
         </div>
-        <div>
+        <div class="form-child-div">
           <label for="phone">Phone:</label>
           <input
             id="phone"
@@ -35,27 +38,35 @@
             autocomplete="tel"
           />
         </div>
-        <div>
+        <div class="form-child-div">
           <label for="bus-number">Bus Number:</label>
-          <select id="bus-number">
+          <select id="bus-number" class="hover-class">
             <option value="Bus 1">Bus 1</option>
             <option value="Bus 2">Bus 2</option>
             <option value="Bus 3">Bus 3</option>
           </select>
         </div>
-        <input id="submit-btn" type="submit" value="Submit" />
+        <div class="submit-div form-child-div">
+          <input
+            class="submit hover-class"
+            id="submit-btn"
+            type="submit"
+            value="Book"
+          />
+        </div>
+        <div class="form-child-div filter-div">
+          <label for="filter">Filter:</label>
+          <select id="filter" onchange="filterData()" class="hover-class">
+            <option value="All">All</option>
+            <option value="Bus 1">Bus 1</option>
+            <option value="Bus 2">Bus 2</option>
+            <option value="Bus 3">Bus 3</option>
+          </select>
+        </div>
       </form>
-      <div>
-        <label for="filter">Filter:</label>
-        <select id="filter" onchange="filterData()">
-          <option value="All">All</option>
-          <option value="Bus 1">Bus 1</option>
-          <option value="Bus 2">Bus 2</option>
-          <option value="Bus 3">Bus 3</option>
-        </select>
-      </div>
+      <ul></ul>
     </div>
-    <ul></ul>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js"></script>
     <script src="./index.js"></script>
   </body>

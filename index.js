@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", initialize);
 let edit = false;
 let editId = null;
 const url =
-  "https://crudcrud.com/api/74b989c5110348dfa4c4a1cf45be8441/bookingList"; //CRUD-CRUD Url
+  "https://crudcrud.com/api/76c54a8bcfff4acfbb0cc5e787270c86/bookingList"; //CRUD-CRUD Url
 
 async function initialize() {
   const bookingList = await getBookings();
@@ -74,6 +74,10 @@ async function handleFormSubmit(event) {
     editId = null;
   } else {
     addBooking(userDetails);
+    document.querySelector("#username").value = "";
+    document.querySelector("#email").value = "";
+    document.querySelector("#phone").value = "";
+    document.querySelector("#bus-number").value = "";
   }
 }
 
@@ -82,14 +86,17 @@ function displayBookings(bookings) {
   const li = document.createElement("li");
   li.key = bookings._id;
   li.id = bookings._id;
+  li.className = "li-element";
   li.textContent = `${bookings.username} - ${bookings.email} - ${bookings.phone} - ${bookings.busNumber}`;
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
+  deleteButton.className = "delete-btn hover-class";
   deleteButton.addEventListener("click", () => {
     deleteData(li);
   });
   const editButton = document.createElement("button");
   editButton.textContent = "Edit";
+  editButton.className = "edit-btn hover-class";
   editButton.addEventListener("click", () => {
     editData(bookings);
   });
@@ -111,7 +118,7 @@ function editData(bookings) {
   document.querySelector("#email").value = bookings.email;
   document.querySelector("#phone").value = bookings.phone;
   document.querySelector("#bus-number").value = bookings.busNumber;
-  document.querySelector("#submit-btn").value = "Update Booking";
+  document.querySelector("#submit-btn").value = "Update";
 }
 
 async function filterData() {
