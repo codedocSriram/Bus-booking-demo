@@ -11,16 +11,32 @@ h2 {
   color: rgb(255, 166, 0);
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.089));
   font-size: 60px;
+  cursor: default;
 }
 ul {
   list-style: none;
 }
 li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border: 2px solid black;
   border-radius: 5px;
   margin: 2px;
   padding: 2px;
+  cursor: default;
   filter: drop-shadow(2px 4px 6px rgb(0, 0, 0));
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.exit {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 .delete-btn {
   margin: 5px;
@@ -49,7 +65,12 @@ li {
   display: flex;
   justify-content: center;
   border-radius: 20px;
-  padding: 10px;
+  padding: 3px 10px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: larger;
+  text-decoration: underline black;
+  cursor: default;
 }
 
 .parent-div {
@@ -74,9 +95,9 @@ li {
   font-weight: bold;
 }
 .submit {
-  width: 70px;
-  height: 30px;
-  font-size: 17px;
+  width: 110px;
+  height: 35px;
+  font-size: 20px;
   background-color: orange;
   border-radius: 8px;
   border: none;

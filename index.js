@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", initialize);
 let edit = false;
 let editId = null;
 const url =
-  "https://crudcrud.com/api/76c54a8bcfff4acfbb0cc5e787270c86/bookingList"; //CRUD-CRUD Url
+  "https://crudcrud.com/api/688d112484b140c394d09ae49da09007/bookingList"; //CRUD-CRUD Url
 
 async function initialize() {
-  const bookingList = await getBookings();
+  const bookingList = await getBookings(url);
   for (let i = 0; i < bookingList.length; i++) {
     displayBookings(bookingList[i]);
   }
@@ -23,7 +23,7 @@ const addBooking = userDetails => {
     });
 };
 
-const getBookings = () => {
+const getBookings = url => {
   //GET Method
   return axios
     .get(url)
@@ -70,6 +70,9 @@ async function handleFormSubmit(event) {
     const li = document.getElementById(editId);
     li.firstChild.textContent = `${userDetails.username} - ${userDetails.email} - ${userDetails.phone} - ${userDetails.busNumber}`;
     document.querySelector("#submit-btn").value = "Submit";
+    document.querySelector("#username").value = "";
+    document.querySelector("#email").value = "";
+    document.querySelector("#phone").value = "";
     edit = false;
     editId = null;
   } else {
@@ -86,7 +89,9 @@ function displayBookings(bookings) {
   li.key = bookings._id;
   li.id = bookings._id;
   li.className = "li-element";
+  li.classList.add("enter");
   li.textContent = `${bookings.username} - ${bookings.email} - ${bookings.phone} - ${bookings.busNumber}`;
+  const div = document.createElement("div");
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
   deleteButton.className = "delete-btn hover-class";
@@ -97,22 +102,34 @@ function displayBookings(bookings) {
   editButton.textContent = "Edit";
   editButton.className = "edit-btn hover-class";
   editButton.addEventListener("click", () => {
-    editData(bookings);
+    editData(li);
   });
-  li.appendChild(deleteButton);
-  li.appendChild(editButton);
+  div.appendChild(deleteButton);
+  div.appendChild(editButton);
+  li.appendChild(div);
   ul.appendChild(li);
+  requestAnimationFrame(() => {
+    li.classList.remove("enter");
+  });
 }
 
 function deleteData(li) {
   deleteBooking(li.key);
-  li.remove();
+  li.classList.add("exit");
+  li.addEventListener(
+    "transitionend",
+    () => {
+      li.remove();
+    },
+    { once: true }
+  );
 }
 
-function editData(bookings) {
+async function editData(li) {
   edit = true;
-  editId = bookings._id;
+  editId = li.id;
   console.log(editId);
+  const bookings = await getBookings(`${url}/${editId}`);
   document.querySelector("#username").value = bookings.username;
   document.querySelector("#email").value = bookings.email;
   document.querySelector("#phone").value = bookings.phone;
@@ -123,7 +140,7 @@ function editData(bookings) {
 async function filterData() {
   const filter = document.querySelector("#filter");
   const ul = document.querySelector("ul");
-  const bookings = await getBookings();
+  const bookings = await getBookings(url);
   ul.innerHTML = "";
   if (filter.value === "All") {
     for (let i = 0; i < bookings.length; i++) {
