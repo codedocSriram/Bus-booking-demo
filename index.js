@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", initialize);
 let edit = false;
 let editId = null;
 const url =
-  "https://crudcrud.com/api/688d112484b140c394d09ae49da09007/bookingList"; //CRUD-CRUD Url
+  "https://crudcrud.com/api/8c76c23e9f9949939196934880a6ab67/bookingList"; //CRUD-CRUD Url
 
 async function initialize() {
   const bookingList = await getBookings(url);

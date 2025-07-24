@@ -30,6 +30,10 @@ li {
   transform: translateY(0);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
+.input-fields {
+  border-radius: 5px;
+  height: 20px;
+}
 .enter {
   opacity: 0;
   transform: translateY(20px);
