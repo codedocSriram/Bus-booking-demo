@@ -88,7 +88,6 @@ function displayBookings(bookings) {
   const li = document.createElement("li");
   li.key = bookings._id;
   li.id = bookings._id;
-  li.className = "li-element";
   li.classList.add("enter");
   li.textContent = `${bookings.username} - ${bookings.email} - ${bookings.phone} - ${bookings.busNumber}`;
   const div = document.createElement("div");
@@ -101,6 +100,7 @@ function displayBookings(bookings) {
   const editButton = document.createElement("button");
   editButton.textContent = "Edit";
   editButton.className = "edit-btn hover-class";
+  //adding class for list transition
   editButton.addEventListener("click", () => {
     editData(li);
   });
@@ -108,6 +108,7 @@ function displayBookings(bookings) {
   div.appendChild(editButton);
   li.appendChild(div);
   ul.appendChild(li);
+  //removing class for list transition
   requestAnimationFrame(() => {
     li.classList.remove("enter");
   });
@@ -115,6 +116,7 @@ function displayBookings(bookings) {
 
 function deleteData(li) {
   deleteBooking(li.key);
+  //adding and removing class for list transition
   li.classList.add("exit");
   li.addEventListener(
     "transitionend",
